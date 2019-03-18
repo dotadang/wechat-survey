@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh_CN" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${app.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">公众号ID：</label>
+								<div class="col-sm-8">
+									<input id="appUid" name="appUid" th:value="${app.appUid}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">公众号名称：</label>
+								<div class="col-sm-8">
+									<input id="appName" name="appName" th:value="${app.appName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">微信appid：</label>
+								<div class="col-sm-8">
+									<input id="appAppid" name="appAppid" th:value="${app.appAppid}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">微信secret：</label>
+								<div class="col-sm-8">
+									<input id="appAppsecret" name="appAppsecret" th:value="${app.appAppsecret}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">团队ID：</label>
+								<div class="col-sm-8">
+									<input id="teamId" name="teamId" th:value="${app.teamId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">类型：</label>
+								<div class="col-sm-8">
+									<input id="description" name="description" th:value="${app.description}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="created" name="created" th:value="${app.created}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改时间：</label>
+								<div class="col-sm-8">
+									<input id="updated" name="updated" th:value="${app.updated}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建人：</label>
+								<div class="col-sm-8">
+									<input id="createdBy" name="createdBy" th:value="${app.createdBy}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改人：</label>
+								<div class="col-sm-8">
+									<input id="updatedBy" name="updatedBy" th:value="${app.updatedBy}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修改次数：</label>
+								<div class="col-sm-8">
+									<input id="modificationNum" name="modificationNum" th:value="${app.modificationNum}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/wechat/application/edit.js">
+	</script>
+</body>
+</html>

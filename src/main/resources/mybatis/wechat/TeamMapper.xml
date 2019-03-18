@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.wechat.dao.TeamDao">
+
+	<select id="get" resultType="com.bootdo.wechat.domain.TeamDO">
+		select `id`,`team_uid`,`team_name`,`province`,`city`,`area`,`principal`,`principal_phone`,`description`,`created`,`updated`,`created_by`,`updated_by`,`modification_num` from team where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.wechat.domain.TeamDO">
+		select `id`,`team_uid`,`team_name`,`province`,`city`,`area`,`principal`,`principal_phone`,`description`,`created`,`updated`,`created_by`,`updated_by`,`modification_num` from team
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="teamUid != null and teamUid != ''"> and team_uid = #{teamUid} </if>
+		  		  <if test="teamName != null and teamName != ''"> and team_name = #{teamName} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="area != null and area != ''"> and area = #{area} </if>
+		  		  <if test="principal != null and principal != ''"> and principal = #{principal} </if>
+		  		  <if test="principalPhone != null and principalPhone != ''"> and principal_phone = #{principalPhone} </if>
+		  		  <if test="description != null and description != ''"> and description = #{description} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="updated != null and updated != ''"> and updated = #{updated} </if>
+		  		  <if test="createdBy != null and createdBy != ''"> and created_by = #{createdBy} </if>
+		  		  <if test="updatedBy != null and updatedBy != ''"> and updated_by = #{updatedBy} </if>
+		  		  <if test="modificationNum != null and modificationNum != ''"> and modification_num = #{modificationNum} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from team
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="teamUid != null and teamUid != ''"> and team_uid = #{teamUid} </if>
+		  		  <if test="teamName != null and teamName != ''"> and team_name = #{teamName} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="area != null and area != ''"> and area = #{area} </if>
+		  		  <if test="principal != null and principal != ''"> and principal = #{principal} </if>
+		  		  <if test="principalPhone != null and principalPhone != ''"> and principal_phone = #{principalPhone} </if>
+		  		  <if test="description != null and description != ''"> and description = #{description} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="updated != null and updated != ''"> and updated = #{updated} </if>
+		  		  <if test="createdBy != null and createdBy != ''"> and created_by = #{createdBy} </if>
+		  		  <if test="updatedBy != null and updatedBy != ''"> and updated_by = #{updatedBy} </if>
+		  		  <if test="modificationNum != null and modificationNum != ''"> and modification_num = #{modificationNum} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.wechat.domain.TeamDO" useGeneratedKeys="true" keyProperty="id">
+		insert into team
+		(
+			`team_uid`, 
+			`team_name`, 
+			`province`, 
+			`city`, 
+			`area`, 
+			`principal`, 
+			`principal_phone`, 
+			`description`, 
+			`created`, 
+			`updated`, 
+			`created_by`, 
+			`updated_by`, 
+			`modification_num`
+		)
+		values
+		(
+			#{teamUid}, 
+			#{teamName}, 
+			#{province}, 
+			#{city}, 
+			#{area}, 
+			#{principal}, 
+			#{principalPhone}, 
+			#{description}, 
+			#{created}, 
+			#{updated}, 
+			#{createdBy}, 
+			#{updatedBy}, 
+			#{modificationNum}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.wechat.domain.TeamDO">
+		update team 
+		<set>
+			<if test="teamUid != null">`team_uid` = #{teamUid}, </if>
+			<if test="teamName != null">`team_name` = #{teamName}, </if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="area != null">`area` = #{area}, </if>
+			<if test="principal != null">`principal` = #{principal}, </if>
+			<if test="principalPhone != null">`principal_phone` = #{principalPhone}, </if>
+			<if test="description != null">`description` = #{description}, </if>
+			<if test="created != null">`created` = #{created}, </if>
+			<if test="updated != null">`updated` = #{updated}, </if>
+			<if test="createdBy != null">`created_by` = #{createdBy}, </if>
+			<if test="updatedBy != null">`updated_by` = #{updatedBy}, </if>
+			<if test="modificationNum != null">`modification_num` = #{modificationNum}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from team where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from team where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

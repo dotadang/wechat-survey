@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.wechat.dao.FansAppDao">
+
+	<select id="get" resultType="com.bootdo.wechat.domain.FansAppDO">
+		select `id`,`fans_id`,`app_id`,`unionid`,`openid`,`description`,`created`,`updated`,`modification_num`,`app_name`,`is_fans`,`follow_time`,`unfollow_time` from fans_app where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.wechat.domain.FansAppDO">
+		select `id`,`fans_id`,`app_id`,`unionid`,`openid`,`description`,`created`,`updated`,`modification_num`,`app_name`,`is_fans`,`follow_time`,`unfollow_time` from fans_app
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fansId != null and fansId != ''"> and fans_id = #{fansId} </if>
+		  		  <if test="appId != null and appId != ''"> and app_id = #{appId} </if>
+		  		  <if test="unionid != null and unionid != ''"> and unionid = #{unionid} </if>
+		  		  <if test="openid != null and openid != ''"> and openid = #{openid} </if>
+		  		  <if test="description != null and description != ''"> and description = #{description} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="updated != null and updated != ''"> and updated = #{updated} </if>
+		  		  <if test="modificationNum != null and modificationNum != ''"> and modification_num = #{modificationNum} </if>
+		  		  <if test="appName != null and appName != ''"> and app_name = #{appName} </if>
+		  		  <if test="isFans != null and isFans != ''"> and is_fans = #{isFans} </if>
+		  		  <if test="followTime != null and followTime != ''"> and follow_time = #{followTime} </if>
+		  		  <if test="unfollowTime != null and unfollowTime != ''"> and unfollow_time = #{unfollowTime} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from fans_app
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fansId != null and fansId != ''"> and fans_id = #{fansId} </if>
+		  		  <if test="appId != null and appId != ''"> and app_id = #{appId} </if>
+		  		  <if test="unionid != null and unionid != ''"> and unionid = #{unionid} </if>
+		  		  <if test="openid != null and openid != ''"> and openid = #{openid} </if>
+		  		  <if test="description != null and description != ''"> and description = #{description} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="updated != null and updated != ''"> and updated = #{updated} </if>
+		  		  <if test="modificationNum != null and modificationNum != ''"> and modification_num = #{modificationNum} </if>
+		  		  <if test="appName != null and appName != ''"> and app_name = #{appName} </if>
+		  		  <if test="isFans != null and isFans != ''"> and is_fans = #{isFans} </if>
+		  		  <if test="followTime != null and followTime != ''"> and follow_time = #{followTime} </if>
+		  		  <if test="unfollowTime != null and unfollowTime != ''"> and unfollow_time = #{unfollowTime} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.wechat.domain.FansAppDO" useGeneratedKeys="true" keyProperty="id">
+		insert into fans_app
+		(
+			`fans_id`, 
+			`app_id`, 
+			`unionid`, 
+			`openid`, 
+			`description`, 
+			`created`, 
+			`updated`, 
+			`modification_num`, 
+			`app_name`, 
+			`is_fans`, 
+			`follow_time`, 
+			`unfollow_time`
+		)
+		values
+		(
+			#{fansId}, 
+			#{appId}, 
+			#{unionid}, 
+			#{openid}, 
+			#{description}, 
+			#{created}, 
+			#{updated}, 
+			#{modificationNum}, 
+			#{appName}, 
+			#{isFans}, 
+			#{followTime}, 
+			#{unfollowTime}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.wechat.domain.FansAppDO">
+		update fans_app 
+		<set>
+			<if test="fansId != null">`fans_id` = #{fansId}, </if>
+			<if test="appId != null">`app_id` = #{appId}, </if>
+			<if test="unionid != null">`unionid` = #{unionid}, </if>
+			<if test="openid != null">`openid` = #{openid}, </if>
+			<if test="description != null">`description` = #{description}, </if>
+			<if test="created != null">`created` = #{created}, </if>
+			<if test="updated != null">`updated` = #{updated}, </if>
+			<if test="modificationNum != null">`modification_num` = #{modificationNum}, </if>
+			<if test="appName != null">`app_name` = #{appName}, </if>
+			<if test="isFans != null">`is_fans` = #{isFans}, </if>
+			<if test="followTime != null">`follow_time` = #{followTime}, </if>
+			<if test="unfollowTime != null">`unfollow_time` = #{unfollowTime}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from fans_app where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from fans_app where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	<select id="findFansAppByOpenId" resultType="com.bootdo.wechat.domain.FansAppDO">
+		select * from fans_app   where openid = #{0}
+	</select>
+	<update id="updateStatus">
+		update fans_app  set is_fans = #{0} ,updated = #{1},modification_num = #{2},follow_time = #{1} where fans_id= #{3}
+	</update>
+	<update id="updateForstatus">
+		update fans_app  set is_fans = '0' ,unfollow_time =#{1},updated = #{1} where openid= #{0}
+
+	</update>
+
+</mapper>

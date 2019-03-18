@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.wechat.dao.MpMessageDao">
+
+	<select id="get" resultType="com.bootdo.wechat.domain.MpMessageDO">
+		select `id`,`mpmessageuid`,`appid`,`msgid`,`msgtotal`,`readnum`,`scenes`,`created`,`updated`,`createdby`,`updatedby`,`modificationnum` from mp_message where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.wechat.domain.MpMessageDO">
+		select `id`,`mpmessageuid`,`appid`,`msgid`,`msgtotal`,`readnum`,`scenes`,`created`,`updated`,`createdby`,`updatedby`,`modificationnum` from mp_message
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="mpmessageuid != null and mpmessageuid != ''"> and mpmessageuid = #{mpmessageuid} </if>
+		  		  <if test="appid != null and appid != ''"> and appid = #{appid} </if>
+		  		  <if test="msgid != null and msgid != ''"> and msgid = #{msgid} </if>
+		  		  <if test="msgtotal != null and msgtotal != ''"> and msgtotal = #{msgtotal} </if>
+		  		  <if test="readnum != null and readnum != ''"> and readnum = #{readnum} </if>
+		  		  <if test="scenes != null and scenes != ''"> and scenes = #{scenes} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="updated != null and updated != ''"> and updated = #{updated} </if>
+		  		  <if test="createdby != null and createdby != ''"> and createdby = #{createdby} </if>
+		  		  <if test="updatedby != null and updatedby != ''"> and updatedby = #{updatedby} </if>
+		  		  <if test="modificationnum != null and modificationnum != ''"> and modificationnum = #{modificationnum} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from mp_message
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="mpmessageuid != null and mpmessageuid != ''"> and mpmessageuid = #{mpmessageuid} </if>
+		  		  <if test="appid != null and appid != ''"> and appid = #{appid} </if>
+		  		  <if test="msgid != null and msgid != ''"> and msgid = #{msgid} </if>
+		  		  <if test="msgtotal != null and msgtotal != ''"> and msgtotal = #{msgtotal} </if>
+		  		  <if test="readnum != null and readnum != ''"> and readnum = #{readnum} </if>
+		  		  <if test="scenes != null and scenes != ''"> and scenes = #{scenes} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="updated != null and updated != ''"> and updated = #{updated} </if>
+		  		  <if test="createdby != null and createdby != ''"> and createdby = #{createdby} </if>
+		  		  <if test="updatedby != null and updatedby != ''"> and updatedby = #{updatedby} </if>
+		  		  <if test="modificationnum != null and modificationnum != ''"> and modificationnum = #{modificationnum} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.wechat.domain.MpMessageDO" useGeneratedKeys="true" keyProperty="id">
+		insert into mp_message
+		(
+			`mpmessageuid`, 
+			`appid`, 
+			`msgid`, 
+			`msgtotal`, 
+			`readnum`, 
+			`scenes`, 
+			`created`, 
+			`updated`, 
+			`createdby`, 
+			`updatedby`, 
+			`modificationnum`
+		)
+		values
+		(
+			#{mpmessageuid}, 
+			#{appid}, 
+			#{msgid}, 
+			#{msgtotal}, 
+			#{readnum}, 
+			#{scenes}, 
+			#{created}, 
+			#{updated}, 
+			#{createdby}, 
+			#{updatedby}, 
+			#{modificationnum}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.wechat.domain.MpMessageDO">
+		update mp_message 
+		<set>
+			<if test="mpmessageuid != null">`mpmessageuid` = #{mpmessageuid}, </if>
+			<if test="appid != null">`appid` = #{appid}, </if>
+			<if test="msgid != null">`msgid` = #{msgid}, </if>
+			<if test="msgtotal != null">`msgtotal` = #{msgtotal}, </if>
+			<if test="readnum != null">`readnum` = #{readnum}, </if>
+			<if test="scenes != null">`scenes` = #{scenes}, </if>
+			<if test="created != null">`created` = #{created}, </if>
+			<if test="updated != null">`updated` = #{updated}, </if>
+			<if test="createdby != null">`createdby` = #{createdby}, </if>
+			<if test="updatedby != null">`updatedby` = #{updatedby}, </if>
+			<if test="modificationnum != null">`modificationnum` = #{modificationnum}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from mp_message where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from mp_message where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.wechat.dao.FansDao">
+
+	<select id="get" resultType="com.bootdo.wechat.domain.FansDO">
+		select `id`,`fans_uid`,`fans_nickname`,`fans_picture`,`fans_sex`,`country`,`province`,`city`,`comment`,`created`,`updated`,`created_by`,`updated_by`,`modification_num` from fans where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.wechat.domain.FansDO">
+		select `id`,`fans_uid`,`fans_nickname`,`fans_picture`,`fans_sex`,`country`,`province`,`city`,`comment`,`created`,`updated`,`created_by`,`updated_by`,`modification_num` from fans
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fansUid != null and fansUid != ''"> and fans_uid = #{fansUid} </if>
+		  		  <if test="fansNickname != null and fansNickname != ''"> and fans_nickname = #{fansNickname} </if>
+		  		  <if test="fansPicture != null and fansPicture != ''"> and fans_picture = #{fansPicture} </if>
+		  		  <if test="fansSex != null and fansSex != ''"> and fans_sex = #{fansSex} </if>
+		  		  <if test="country != null and country != ''"> and country = #{country} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="comment != null and comment != ''"> and comment = #{comment} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="updated != null and updated != ''"> and updated = #{updated} </if>
+		  		  <if test="createdBy != null and createdBy != ''"> and created_by = #{createdBy} </if>
+		  		  <if test="updatedBy != null and updatedBy != ''"> and updated_by = #{updatedBy} </if>
+		  		  <if test="modificationNum != null and modificationNum != ''"> and modification_num = #{modificationNum} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from fans
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fansUid != null and fansUid != ''"> and fans_uid = #{fansUid} </if>
+		  		  <if test="fansNickname != null and fansNickname != ''"> and fans_nickname = #{fansNickname} </if>
+		  		  <if test="fansPicture != null and fansPicture != ''"> and fans_picture = #{fansPicture} </if>
+		  		  <if test="fansSex != null and fansSex != ''"> and fans_sex = #{fansSex} </if>
+		  		  <if test="country != null and country != ''"> and country = #{country} </if>
+		  		  <if test="province != null and province != ''"> and province = #{province} </if>
+		  		  <if test="city != null and city != ''"> and city = #{city} </if>
+		  		  <if test="comment != null and comment != ''"> and comment = #{comment} </if>
+		  		  <if test="created != null and created != ''"> and created = #{created} </if>
+		  		  <if test="updated != null and updated != ''"> and updated = #{updated} </if>
+		  		  <if test="createdBy != null and createdBy != ''"> and created_by = #{createdBy} </if>
+		  		  <if test="updatedBy != null and updatedBy != ''"> and updated_by = #{updatedBy} </if>
+		  		  <if test="modificationNum != null and modificationNum != ''"> and modification_num = #{modificationNum} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.wechat.domain.FansDO" useGeneratedKeys="true" keyProperty="id">
+		insert into fans
+		(
+			`fans_uid`, 
+			`fans_nickname`, 
+			`fans_picture`, 
+			`fans_sex`, 
+			`country`, 
+			`province`, 
+			`city`, 
+			`comment`, 
+			`created`, 
+			`updated`, 
+			`created_by`, 
+			`updated_by`, 
+			`modification_num`
+		)
+		values
+		(
+			#{fansUid}, 
+			#{fansNickname}, 
+			#{fansPicture}, 
+			#{fansSex}, 
+			#{country}, 
+			#{province}, 
+			#{city}, 
+			#{comment}, 
+			#{created}, 
+			#{updated}, 
+			#{createdBy}, 
+			#{updatedBy}, 
+			#{modificationNum}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.wechat.domain.FansDO">
+		update fans 
+		<set>
+			<if test="fansUid != null">`fans_uid` = #{fansUid}, </if>
+			<if test="fansNickname != null">`fans_nickname` = #{fansNickname}, </if>
+			<if test="fansPicture != null">`fans_picture` = #{fansPicture}, </if>
+			<if test="fansSex != null">`fans_sex` = #{fansSex}, </if>
+			<if test="country != null">`country` = #{country}, </if>
+			<if test="province != null">`province` = #{province}, </if>
+			<if test="city != null">`city` = #{city}, </if>
+			<if test="comment != null">`comment` = #{comment}, </if>
+			<if test="created != null">`created` = #{created}, </if>
+			<if test="updated != null">`updated` = #{updated}, </if>
+			<if test="createdBy != null">`created_by` = #{createdBy}, </if>
+			<if test="updatedBy != null">`updated_by` = #{updatedBy}, </if>
+			<if test="modificationNum != null">`modification_num` = #{modificationNum}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from fans where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from fans where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<insert id="saveUserWxInfo" parameterType="me.chanjar.weixin.mp.bean.result.WxMpUser">
+		insert into fans
+		(
+			`fans_uid`,
+			`fans_nickname`,
+			`fans_picture`,
+			`fans_sex`,
+			`country`,
+			`province`,
+			`city`,
+			`comment`,
+			`created`,
+			`updated`,
+			`created_by`,
+			`updated_by`,
+			`modification_num`
+		)
+		values
+		(
+			#{fansUid},
+			#{fansNickname},
+			#{fansPicture},
+			#{fansSex},
+			#{country},
+			#{province},
+			#{city},
+			#{comment},
+			#{created},
+			#{updated},
+			#{createdBy},
+			#{updatedBy},
+			#{modificationNum}
+		)
+
+	</insert>
+
+</mapper>
