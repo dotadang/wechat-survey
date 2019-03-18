@@ -1216,3 +1216,26 @@ CREATE TABLE `team_application` (
 -- ----------------------------
 -- Records of team_application
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for survey
+-- ----------------------------
+DROP TABLE IF EXISTS `survey`;
+CREATE TABLE `survey` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `openid` varchar(100) DEFAULT NULL,
+  `q1` int(11) DEFAULT NULL,
+  `q2` int(11) DEFAULT NULL,
+  `q3` int(11) DEFAULT NULL,
+  `q4` int(11) DEFAULT NULL,
+  `q5` int(11) DEFAULT NULL,
+  `q6` varchar(100) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
+  `mobile` varchar(20) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `score` int(11) DEFAULT NULL COMMENT '问卷分数',
+  `created` datetime DEFAULT NULL,
+  `updated` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='问卷信息';
+

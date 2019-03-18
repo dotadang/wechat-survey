@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:fragment="header">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title></title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+<link rel="shortcut icon" href="favicon.ico">
+<link href="css/bootstrap.min.css?v=3.3.6"
+	th:href="@{/css/bootstrap.min.css?v=3.3.6}" rel="stylesheet">
+<link href="/css/font-awesome.css?v=4.4.0"
+	th:href="@{/css/font-awesome.css?v=4.4.0}" rel="stylesheet">
+<link href="/css/plugins/bootstrap-table/bootstrap-table.min.css"
+	th:href="@{/css/plugins/bootstrap-table/bootstrap-table.min.css}"
+	rel="stylesheet">
+<link href="/css/plugins/jsTree/style.min.css" rel="stylesheet">
+<link href="/css/plugins/jqTreeGrid/jquery.treegrid.css"
+	rel="stylesheet">
+<!--summernote css -->
+<link href="/css/plugins/summernote/summernote-0.8.8.css"
+	rel="stylesheet">
+<link href="css/animate.css" th:href="@{/css/animate.css}"
+	rel="stylesheet">
+<link href="/css/plugins/chosen/chosen.css" rel="stylesheet">
+<link href="/css/style.css?v=4.1.0" th:href="@{/css/style.css?v=4.1.0}"
+	rel="stylesheet">
+<script th:inline="javascript">
+	    var openId = [[${openId}]];
+	</script>
+</head>
+<body class="gray-bg">
+	<div class="layui-carousel" id="test1">
+		<div carousel-item>
+			<img src="/img/survey.jpg" width="100%" />
+		</div>
+	</div>
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<div class="form-header">
+								<div class="container-fluid">
+									<div class="row">
+										<h2 class="form-title font-family-inherit">香港优秀人才入境计划</h2>
+										<div class="form-description collapse-details">
+											<p>优才计划是港府于2006年推出的一项设有配额（1000人/年）的人才吸纳计划，旨在吸引高技术和行业优秀人才来港定居。香港优才不需要投资，不需要提前获得雇主聘用，不需要英语能力。申请人可根据【综合计分制】和【成就计分制】进行打分，80分即可递交申请。</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<input id="openid" name="openid" class="form-control"
+								type="hidden" th:value="${openId}" />
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">1、您的年龄</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<!-- input id="q1" name="q1" class="form-control" type="text"> -->
+									<input type="radio" name="q1" value="1">18-39岁（30分）<br>
+									<input type="radio" name="q1" value="2">40-44岁（20分）<br>
+									<input type="radio" name="q1" value="3">45-50岁（15分）<br>
+									<input type="radio" name="q1" value="4">51岁以上（0分）<br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">2、学历/专业资格</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<!-- <input id="q2" name="q2" class="form-control" type="text"> -->
+									<input type="radio" name="q2" value="1">博士（或2个硕士）（40分）<br>
+									<input type="radio" name="q2" value="2">硕士（或2个学士）（20分）<br>
+									<input type="radio" name="q2" value="3">学士（或专业技能证明）（10分）<br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">3、您的工作经验和管理经验？</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<!-- <input id="q3" name="q3" class="form-control" type="text"> -->
+									<input type="radio" name="q3" value="1">不少于10年工作经验，以及不少于5年担任管理职位（40分）<br>
+									<input type="radio" name="q3" value="2">不少于5年工作经验，以及不少于2年管理职位（30分）<br>
+									<input type="radio" name="q3" value="3">不少于5年工作经验（15分）<br>
+									<input type="radio" name="q3" value="4">不少于2年工作经验（5分）<br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">4、您的语言能力？</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<!-- <input id="q4" name="q4" class="form-control" type="text"> -->
+									<input type="radio" name="q4" value="1">既懂中文又懂英文（20分）<br>
+									<input type="radio" name="q4" value="2">只懂中文或英文，另懂一门外语（15分）<br>
+									<input type="radio" name="q4" value="3">只懂中文或英文（10分）<br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">5、您有多少个未成年子女？</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<!-- <input id="q5" name="q5" class="form-control" type="text"> -->
+									<input type="radio" name="q5" value="1">0个（0分）<br>
+									<input type="radio" name="q5" value="2">1个（5分）<br>
+									<input type="radio" name="q5" value="3">2个或2个以上（10分）<br>
+									<input type="radio" name="q5" value="4">单身（0分）<br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">6、加分项（多选）</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<!-- <input id="q6" name="q6" class="form-control" type="text"> -->
+									<input type="checkbox" name="q6" value="1">国际著名院校本科以上学历（30分）<br>
+									<input type="checkbox" name="q6" value="2">不少于2年国际工作经验（15分）<br>
+									<input type="checkbox" name="q6" value="3">至少1名直系家庭成员是香港永久居民（5分）<br>
+									<input type="checkbox" name="q6" value="4">配偶本科以上学历（5分）<br>
+									<input type="checkbox" name="q6" value="5">符合人才清单所列专业（30分）<br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">姓名：</label>
+								<div class="col-sm-8">
+									<input id="name" name="name" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">手机号码：</label>
+								<div class="col-sm-8">
+									<input id="mobile" name="mobile" class="form-control"
+										type="tel">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">Email：</label>
+								<div class="col-sm-8">
+									<input id="email" name="email" class="form-control"
+										type="email">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary btn-block">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/survey/survey/add.js">
+		
+	</script>
+</body>
+</html>

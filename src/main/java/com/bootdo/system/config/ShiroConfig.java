@@ -70,6 +70,7 @@ public class ShiroConfig {
 		shiroFilterFactoryBean.setSuccessUrl("/index");
 		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
 		LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
+		filterChainDefinitionMap.put("/**.txt", "anon");
 		filterChainDefinitionMap.put("/css/**", "anon");
 		filterChainDefinitionMap.put("/wechat/**","anon");
 		filterChainDefinitionMap.put("/js/**", "anon");
@@ -83,7 +84,12 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/", "anon");
 		filterChainDefinitionMap.put("/blog", "anon");
 		filterChainDefinitionMap.put("/blog/open/**", "anon");
+		filterChainDefinitionMap.put("/survey/survey/add**", "anon");
+		filterChainDefinitionMap.put("/survey/survey/save", "anon");
+		filterChainDefinitionMap.put("/survey/survey/redirect", "anon");
+		filterChainDefinitionMap.put("/survey/survey/notify", "anon"); 
 		filterChainDefinitionMap.put("/**", "authc");
+		
 
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
