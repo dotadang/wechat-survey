@@ -88,6 +88,8 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/survey/survey/save", "anon");
 		filterChainDefinitionMap.put("/survey/survey/redirect", "anon");
 		filterChainDefinitionMap.put("/survey/survey/notify", "anon"); 
+		filterChainDefinitionMap.put("/survey/study/add**", "anon");
+		filterChainDefinitionMap.put("/survey/study/save", "anon");
 		filterChainDefinitionMap.put("/**", "authc");
 		
 

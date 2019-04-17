@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+							<input id="openid" name="openid" class="form-control" type="hidden" th:value="${openId}" />
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">1、您有多少个孩子？</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<input type="radio" name="childcnt" value="1">1个<br>
+									<input type="radio" name="childcnt" value="2">2个<br>
+									<input type="radio" name="childcnt" value="3">3个<br>
+									<input type="radio" name="childcnt" value="4">4个及以上<br>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">2、你的孩子现在几岁？（多个孩子可多选）</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<input type="checkbox" name="childage" value="1">0~3岁<br>
+									<input type="checkbox" name="childage" value="2">4~6岁<br>
+									<input type="checkbox" name="childage" value="3">7~12岁<br>
+									<input type="checkbox" name="childage" value="4">12~18岁<br>
+									<input type="checkbox" name="childage" value="5">18岁以上<br>
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">3、您计划将来孩子接受何种高等教育？（可多选）</label><br>
+								<div class="col-sm-8 layui-input-block">
+									<input type="checkbox" name="education" value="1">国内院校<br>
+									<input type="checkbox" name="education" value="2">欧美院校<br>
+									<input type="checkbox" name="education" value="3">香港院校<br>
+									<input id="edu-other" type="checkbox" name="education" value="4">其它<br>
+								</div>
+								<div class="col-sm-8">
+									<input id="eduinput" name="eduinput" class="form-control" style="display:none" type="text" placeholder="请输入您的其它教育方式">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">4、您预计每位孩子高等教育每年花费预算（人民币等值）？</label>
+								<div class="col-sm-8 layui-input-block">
+									<input type="radio" name="cost" value="1">5~10万元<br>
+									<input type="radio" name="cost" value="2">11~30万元<br>
+									<input type="radio" name="cost" value="3">31~50万元<br>
+									<input type="radio" name="cost" value="4">50万元以上<br>
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">5、您准备该预算的财务规划？（可多选）</label>
+								<div class="col-sm-8 layui-input-block">
+									<input type="checkbox" name="finance" value="1">储蓄<br>
+									<input type="checkbox" name="finance" value="2">投资理财（股票、债券）<br>
+									<input type="checkbox" name="finance" value="3">教育金保险<br>
+									<input id="fin-other" type="checkbox" name="finance" value="4">其它<br>
+								</div>
+								<div class="col-sm-8">
+									<input id="fininput" name="fininput" class="form-control" style="display:none" type="text" placeholder="请输入您的其它财务规划">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">6、您是否有海外资产配置？如有，为何种形式：</label>
+								<div class="col-sm-8 layui-input-block">
+									<input type="checkbox" name="asset" value="1">没有<br>
+									<input type="checkbox" name="asset" value="2">海外房产<br>
+									<input type="checkbox" name="asset" value="3">香港保险<br>
+									<input type="checkbox" name="asset" value="4">境外储蓄<br>
+									<input id="asset-other" type="checkbox" name="asset" value="5">其它<br>
+								</div>
+								<div class="col-sm-8">
+									<input id="assetinput" name="assetinput" class="form-control" style="display:none" type="text" placeholder="请输入您的其它海外资产">
+								</div>
+							</div>
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">7、关于孩子的留学资金准备，您最想了解什么？</label>
+								<div class="col-sm-8">
+									<input id="otherinfo" name="otherinfo" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">姓名：</label>
+								<div class="col-sm-8">
+									<input id="name" name="name" class="form-control" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">电话：</label>
+								<div class="col-sm-8">
+									<input id="tel" name="tel" class="form-control"	type="tel">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 layui-form-label">邮箱：</label>
+								<div class="col-sm-8">
+									<input id="email" name="email" class="form-control"	type="email">
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary btn-block">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/survey/study/add.js">
+	</script>
+</body>
+</html>

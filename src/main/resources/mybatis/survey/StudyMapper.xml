@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bootdo.survey.dao.StudyDao">
+
+	<select id="get" resultType="com.bootdo.survey.domain.StudyDO">
+		select `id`,`openid`,`childcnt`,`childage`,`education`,`eduinput`,`cost`,`finance`,`fininput`,`asset`,`assetinput`,`name`,`tel`,`email`,`createdate`,`updatedate` from survey_study where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.bootdo.survey.domain.StudyDO">
+		select `id`,`openid`,`childcnt`,`childage`,`education`,`eduinput`,`cost`,`finance`,`fininput`,`asset`,`assetinput`,`otherinfo`,`name`,`tel`,`email`,`createdate`,`updatedate` from survey_study
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="openid != null and openid != ''"> and openid = #{openid} </if>
+		  		  <if test="childcnt != null and childcnt != ''"> and childcnt = #{childcnt} </if>
+		  		  <if test="childage != null and childage != ''"> and childage = #{childage} </if>
+		  		  <if test="education != null and education != ''"> and education = #{education} </if>
+		  		  <if test="cost != null and cost != ''"> and cost = #{cost} </if>
+		  		  <if test="finance != null and finance != ''"> and finance = #{finance} </if>
+		  		  <if test="asset != null and asset != ''"> and asset = #{asset} </if>
+		  		  <if test="otherinfo != null and otherinfo != ''"> and otherinfo = #{otherinfo} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="tel != null and tel != ''"> and tel = #{tel} </if>
+		  		  <if test="email != null and email != ''"> and email = #{email} </if>
+		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
+		  		  <if test="updatedate != null and updatedate != ''"> and updatedate = #{updatedate} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from survey_study
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="openid != null and openid != ''"> and openid = #{openid} </if>
+		  		  <if test="childcnt != null and childcnt != ''"> and childcnt = #{childcnt} </if>
+		  		  <if test="childage != null and childage != ''"> and childage = #{childage} </if>
+		  		  <if test="education != null and education != ''"> and education = #{education} </if>
+		  		  <if test="cost != null and cost != ''"> and cost = #{cost} </if>
+		  		  <if test="finance != null and finance != ''"> and finance = #{finance} </if>
+		  		  <if test="asset != null and asset != ''"> and asset = #{asset} </if>
+		  		  <if test="otherinfo != null and otherinfo != ''"> and otherinfo = #{otherinfo} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="tel != null and tel != ''"> and tel = #{tel} </if>
+		  		  <if test="email != null and email != ''"> and email = #{email} </if>
+		  		  <if test="createdate != null and createdate != ''"> and createdate = #{createdate} </if>
+		  		  <if test="updatedate != null and updatedate != ''"> and updatedate = #{updatedate} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.bootdo.survey.domain.StudyDO" useGeneratedKeys="true" keyProperty="id">
+		insert into survey_study
+		(
+			`openid`, 
+			`childcnt`, 
+			`childage`, 
+			`education`,
+			`eduinput`,
+			`cost`,
+			`finance`,
+			`fininput`,
+			`asset`,
+			`assetinput`, 
+			`otherinfo`, 
+			`name`, 
+			`tel`, 
+			`email`, 
+			`createdate`, 
+			`updatedate`
+		)
+		values
+		(
+			#{openid}, 
+			#{childcnt}, 
+			#{childage}, 
+			#{education}, 
+			#{eduinput}, 
+			#{cost}, 
+			#{finance}, 
+			#{fininput}, 
+			#{asset}, 
+			#{assetinput}, 
+			#{otherinfo}, 
+			#{name}, 
+			#{tel}, 
+			#{email}, 
+			#{createdate}, 
+			#{updatedate}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.bootdo.survey.domain.StudyDO">
+		update survey_study 
+		<set>
+			<if test="openid != null">`openid` = #{openid}, </if>
+			<if test="childcnt != null">`childcnt` = #{childcnt}, </if>
+			<if test="childage != null">`childage` = #{childage}, </if>
+			<if test="education != null">`education` = #{education}, </if>
+			<if test="eduinput != null">`eduinput` = #{eduinput}, </if>
+			<if test="cost != null">`cost` = #{cost}, </if>
+			<if test="finance != null">`finance` = #{finance}, </if>
+			<if test="fininput != null">`fininput` = #{fininput}, </if>
+			<if test="asset != null">`asset` = #{asset}, </if>
+			<if test="assetinput != null">`assetinput` = #{assetinput}, </if>
+			<if test="otherinfo != null">`otherinfo` = #{otherinfo}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="tel != null">`tel` = #{tel}, </if>
+			<if test="email != null">`email` = #{email}, </if>
+			<if test="createdate != null">`createdate` = #{createdate}, </if>
+			<if test="updatedate != null">`updatedate` = #{updatedate}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from survey_study where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from survey_study where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

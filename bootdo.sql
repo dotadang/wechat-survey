@@ -1239,3 +1239,29 @@ CREATE TABLE `survey` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COMMENT='问卷信息';
 
+-- ----------------------------
+-- Table structure for survey_study
+-- ----------------------------
+DROP TABLE IF EXISTS `survey_study`;
+CREATE TABLE `survey_study` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `openid` varchar(100) DEFAULT NULL COMMENT '微信openid',
+  `childcnt` int(11) DEFAULT NULL COMMENT '有多少个孩子',
+  `childage` varchar(100) DEFAULT NULL,
+  `education` varchar(100) DEFAULT NULL COMMENT ' 您计划将来孩子接受何种高等教育？',
+  `eduinput` varchar(100) DEFAULT NULL,
+  `cost` int(11) DEFAULT NULL COMMENT '您预计每位孩子高等教育每年花费预算（人民币等值）？',
+  `finance` varchar(100) DEFAULT NULL COMMENT ' 您准备该预算的财务规划？',
+  `fininput` varchar(100) DEFAULT NULL,
+  `asset` varchar(100) DEFAULT NULL COMMENT '您是否有海外资产配置？如有，为何种形式',
+  `assetinput` varchar(100) DEFAULT NULL,
+  `otherinfo` varchar(200) DEFAULT NULL COMMENT '关于孩子的留学资金准备，您最想了解什么？',
+  `name` varchar(100) DEFAULT NULL COMMENT '称呼',
+  `tel` varchar(100) DEFAULT NULL COMMENT '电话',
+  `email` varchar(100) DEFAULT NULL COMMENT '邮箱',
+  `createdate` datetime DEFAULT NULL,
+  `updatedate` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+
